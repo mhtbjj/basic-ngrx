@@ -1,10 +1,10 @@
-<!-- <label for="incrementBy"> Increment By</label>
+<label for="incrementBy"> Increment By</label>
 <input
-  type="text"
+  type="number"
   name="incrementBy"
   [(ngModel)]="incrementBy"
-  (ngModelChange)="(incrementByChange)"
-/> -->
+  (ngModelChange)="incrementByChange()"
+/>
 <button id="increment" (click)="increment()">Increment</button>
 
 <div>Current Count: {{ counter$ | async }}</div>
