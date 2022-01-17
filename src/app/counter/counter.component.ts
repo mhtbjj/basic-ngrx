@@ -8,6 +8,7 @@ import {
   resetCounter,
 } from '../counter.actions';
 import { counterFeatureKey, CounterState } from '../counter.reducer';
+import { selectCounter, selectIncrementBy } from '../counter.selectors';
 import { AppState } from '../reducers';
 
 @Component({
@@ -18,12 +19,12 @@ import { AppState } from '../reducers';
 export class CounterComponent implements OnInit {
   counter$: Observable<number>;
   incrementBy: number = 1;
-  c: number | null = null;
 
   constructor(private store: Store<AppState>) {
-    this.counter$ = this.store
-      .select(counterFeatureKey)
-      .pipe(map((data) => data.counter));
+    this.store
+      .select(selectIncrementBy)
+      .subscribe((data) => (this.incrementBy = data));
+    this.counter$ = this.store.select(selectCounter);
   }
 
   ngOnInit(): void {}
